@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Controller
 public class PageController {
-    @RequestMapping("/index.html")
+    @RequestMapping("index.html")
     public String index(Model model){
         String s= "this is from Server";
         model.addAttribute("str",s);
