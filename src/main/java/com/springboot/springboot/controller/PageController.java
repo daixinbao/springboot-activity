@@ -1,6 +1,7 @@
 package com.springboot.springboot.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Controller
 public class PageController {
-    @RequestMapping("index.html")
-    public String index(){
+    @RequestMapping("/index.html")
+    public String index(Model model){
+        String s= "this is from Server";
+        model.addAttribute("str",s);
         return "index";
     }
 }

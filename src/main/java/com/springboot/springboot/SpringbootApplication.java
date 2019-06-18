@@ -12,12 +12,5 @@ public class SpringbootApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootApplication.class, args);
 	}
-	@Bean
-	public InternalResourceViewResolver setupViewResolver(){
-		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix("/templates/");
-		resolver.setSuffix(".ftl");
-		return resolver;
-	}
 
 }
