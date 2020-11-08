@@ -4,15 +4,60 @@ server:
     context-path: /activity
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/activity?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=false
-    username: root
-    password: root
-  freemarker:
-    request-context-attribute: req #req访问request
-    suffix: .html
-    enabled: true
-    template-loader-path: classpath:/templates/
-    content-type: text/html
-    charset: UTF-8
-　  cache: false
+    ds1:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/ds1?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=false # springboot2.0多数据源配置使用
+      url: jdbc:mysql://127.0.0.1:3306/ds1?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=false # durid监控使用
+      username: root
+      password: daixinbao
+      type: com.alibaba.druid.pool.DruidDataSource
+    ds2:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/ds2?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=false
+      url: jdbc:mysql://127.0.0.1:3306/ds2?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=false
+      username: root
+      password: daixinbao
+      type: com.alibaba.druid.pool.DruidDataSource
+    activity:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/activity?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=false
+      url: jdbc:mysql://127.0.0.1:3306/activity?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=false
+      username: root
+      password: daixinbao
+      type: com.alibaba.druid.pool.DruidDataSource
+      #Spring Boot 默认是不注入这些属性值的，需要自己绑定
+      #druid 数据源专有配置
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      #配置监控统计拦截的filters，stat:监控统计、log4j：日志记录、wall：防御sql注入
+      #如果允许时报错 java.lang.ClassNotFoundException: org.apache.log4j.Priority
+      #测试类，发现配置的参数没有生效
+      #需要定义druidDatasource的配置类，绑定参数
+      #则导入 log4j 依赖即可，Maven 地址：
+      #https://mvnrepository.com/artifact/log4j/log4j
+      filters: stat,wall,log4j
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+#  freemarker:
+#    request-context-attribute: req #req访问request
+#    suffix: .html
+#    enabled: true
+#    template-loader-path: classpath:/templates/
+#    content-type: text/html
+#    charset: UTF-8
+#　  cache: false
+
+info:
+  app:
+    name: 原恒大

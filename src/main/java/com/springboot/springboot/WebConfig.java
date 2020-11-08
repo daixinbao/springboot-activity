@@ -15,4 +15,5 @@ public class WebConfig extends WebMvcConfigurationSupport {
         super.addInterceptors(registry);
         registry.addInterceptor(new ApiInterceptor());
     }
+
 }

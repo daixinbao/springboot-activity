@@ -6,8 +6,10 @@ import org.activiti.engine.TaskService;
 import org.activiti.engine.impl.persistence.entity.ExecutionEntity;
 import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,6 +39,14 @@ public class ActivityConsumerServiceImpl implements ActivityConsumerService {
         map.put("pass", false);
         taskService.complete(taskId2, map);//驳回申请
         System.out.println("method startActivityDemo end....");
+
+
+        ArrayList<Object> objects = new ArrayList<>();
+        objects.stream().parallel().forEach(a->{
+
+        });
+        ApplicationContext ac=null;
+        ac.getBean("");
         return false;
     }
 }
