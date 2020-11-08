@@ -29,6 +29,8 @@ public class DruidConfig {
         initParams.put("loginUsername", "admin");
         initParams.put("loginPassword", "123456");
 //后台允许谁可以访问
+
+
 //initParams.put("allow", "localhost")：表示只有本机可以访问
 //initParams.put("allow", "")：为空或者为null时，表示允许所有访问
         initParams.put("allow", "");
